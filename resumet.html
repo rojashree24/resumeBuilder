@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>myResume</title>
+        <link href="./resume.css" type="text/css" rel="stylesheet">
+        <script src="./resume.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+        </script>
+    </head>
+    <body bgcolor="red">
+        <div id="makepdf" class="makepdf">
+            <section id="topBanner">
+                <div id="imageIcon"><img src="./img_avatar2.png" alt="ProfileImage"></div>
+                <div id="titleObjective" >
+                    <div id="div3">
+                        <h2>Name </h2><h4 id="fname">
+                        <input id="fullName" placeholder="Your Name" type="text" name="fullName">
+                        </h4><h2>Objective</h2>
+                        <textarea id="objective" name="objective" placeholder="Describe yourself here"></textarea>
+                        <p id="objectContent" style=" white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;"></p>
+                    </div>
+                    <div id="div3">
+                        <h2>Email</h2><h4 id="mailh2">
+                        <input id="mail" placeholder="Your Email" type="text" name="fullName">
+                        </h4><h2>Contact Number</h2><h4 id="phnoh2">
+                        <input id="phno" placeholder="Your Phone Number" type="text" name="fullName">
+                    </h4></div>
+                    <div id="div3">
+                        <h2>LinkedIn link</h2><h4 id="linkh4">
+                        <input id="linkedIn" placeholder="Attatch LinkedIn Link here" type="text" name="fullName">
+                        </h4><h2>GitHub link</h2><h4 id="gith4">
+                        <input id="git" placeholder="Attatch GitHub link here" type="text" name="fullName">
+                    </h4></div>
+                    <p id="objectContent"></p>
+                </div>
+            </section>
+            <hr>
+            <section id="skillsProjects">
+                <div id="skills">
+                    <h2>Skillset</h2>
+                    <ul id="mySkills"> 
+                    </ul>
+                    <input id="skill" type="text" onfocus="this.value=''" placeholder="New Skills"><br>
+                    <input id="addskills" type="button" value="ADD SKILLS" onclick="addskillset()">
+                </div>
+                <div id="interests">
+                    <h2>Interests</h2>
+                    <ul id="myInterests"> 
+                    </ul>
+                    <input id="Interest" type="text" onfocus="this.value=''" placeholder="New Interest"><br>
+                    <input id="addLikes" type="button" value="ADD INTEREST" onclick="addlikeset()">
+                </div>
+                <div id="education">
+                    <h2>Education</h2>
+                    <b><Ol id="Studies">
+
+                    </Ol></b>
+                    <input id="StudyCourse" type="text" placeholder="Course of study" >
+                    <input id="studyInst" type="text"  placeholder="Institute name" >
+                    <input id="StudyAdds" type="text" placeholder="Aditional Info" >
+                    <input id="addStudy" type="button" value="ADD COURSE" onclick="addStudy()">
+                </div>
+            </section><hr>
+            <section id="internInfo">
+                <div id="workshop">
+                    <h2>WORKSHOPS</h2>
+                    <h3 id="workTitleh3"><input id="workTitle" type="text" placeholder="WorkshopTitle"><br>
+                    </h3><p id="workDesP"><textarea id="workDes" placeholder="Skills lernt from Workshop" row="10" col="400"></textarea></p>
+                </div>
+                <div id="intern">
+                    <h2>INTERNSHIPS</h2>
+                    <h3 id="internTitleh3"><input id="internTitle" type="text" placeholder="InternTitle"><br>
+                    </h3><p id="internDesP"><textarea id="internDes" placeholder="Skills lernt from internship"></textarea></p>
+                </div>
+                <div id="projects">
+                    <h2>PROJECTS</h2>
+                    <h3 id="projTitleh3"><input id="projTitle" type="text" placeholder="ProjectTitle" name="projTitle">
+                    </h3><p id="projDesP"><textarea id="projDes" placeholder="Project Description"></textarea></p>
+                </div>
+            </section><hr>
+            <section id="achievement">
+                <div id="certificate">
+                    <h2>CERTIFICATES EARNED</h2>
+                    <ul id="myCertificates"></ul>
+                    <input id="Certificate" type="text" placeholder="Certifications done" onfocus="this.value=''" value=""><br>
+                    <input id="addCertificates" type="button" value="ADD Certificate" onclick="addCertificate()">
+                </div>
+                <div id="competition">
+                    <h2>COMPETITION</h2>
+                    <b><ol id="myCompetition"></ol></b>
+                    <input id="competTitile" type="text" placeholder="Competition Name"><br>
+                    <input id="competPrize" type="text" placeholder="Position at exit of competition"><br>
+                    <input id="addCompet" type="button" value="ADD PARTICIPATION" onclick="addCompet()">
+                </div>
+                <div id="paperPublish">
+                    <h2>PAPER PUBLISHMENTS</h2>
+                    <b><Ol id="Paper"></Ol></b>
+                    <input id="paperTitle" type="text"  placeholder="Paper title"><br>
+                    <input id="paperMag" type="text" placeholder="Magazine Published in" ><br>
+                    <input id="addPaper" type="button" value="ADD PUBLISHMENT" onclick="addPaper()">
+                </div>
+            </section><hr>
+        </div>
+    <section id="controls"><center><br>
+        <input type="button" id="button_generate" onclick="generate()"  value="GENERATE">
+        <input type="button" onclick="edit()" value="EDIT">
+        <input type="button" id="download-pdf" value="DOWNLOAD">
+    </center></section>
+    <script>
+        var button = document.getElementById("download-pdf");
+        var makepdf = document.getElementById("makepdf");
+        button.addEventListener("click", function () {
+            var mywindow = window.open("", "PRINT", "height=400,width=600");
+            mywindow.document.write(makepdf.innerHTML);
+            mywindow.document.close();
+            mywindow.focus();
+            mywindow.print();
+            mywindow.close();
+            return true;
+        });
+
+    </script>
+    </body>
+    </html>
